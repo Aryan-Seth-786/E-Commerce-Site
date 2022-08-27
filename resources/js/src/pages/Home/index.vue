@@ -1,13 +1,7 @@
 <template>
-Body here
+body
 </template>
 
-<script>
-export default {
-    name: "index"
-}
+<script setup>
+
 </script>
-
-<style scoped>
-
-</style>
