@@ -1,0 +1,1 @@
+SELECT * FROM cart WHERE user = 1;

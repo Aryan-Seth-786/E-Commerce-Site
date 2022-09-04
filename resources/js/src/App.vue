@@ -1,14 +1,11 @@
 <template>
-    <Header />
-    <router-view />
-    <Footer/>
-    <p>from store</p>
-    <p>{{my_store.property}}</p>
+    <div id="main" class="h-full w-full">
+        <Header />
+        <router-view />
+        <Footer/>
+    </div>
 </template>
 
 <script setup>
-import { notes_store } from './stores/my_store';
 
-
-let my_store = notes_store();
 </script>

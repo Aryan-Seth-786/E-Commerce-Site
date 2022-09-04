@@ -1,6 +1,6 @@
 <template>
-    <div id="footer">
-        
+    <div id="footer" class="mt-4">
+        ehllo
     </div>
 </template>
 

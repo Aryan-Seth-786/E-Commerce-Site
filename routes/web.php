@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/abc',function () {
+    return 'hello';
+});
 Route::get('{any}', function () {
     return view('vue');
 })->where('any', '.*'); ;
