@@ -29,9 +29,14 @@ class UserController extends Controller
     private function check_user($username, $password)
     {
         /* here we have to check if the user exists */
+        $password = crypt($password,'salt');
         $ret = User::where('name', '=', $username)->where('password', '=', $password)->first();
         // return empty($ret);
         // return $ret['id'];
+        // return [
+        //     'username' => $username,
+        //     'pass' => $password
+        // ];
         if (!empty($ret)) {
             return [
                 'reply' => 'valid user',
@@ -44,6 +49,26 @@ class UserController extends Controller
         }
     }
 
+    public function create_user($username, $password,$email)
+    {
+        $check_user = $this->check_user($username, $password);
+        if ($check_user['reply'] !== 'invalid user') {
+            return [
+                'reply' => 'username exists'
+            ];
+        }
+        // $ret_query = User::insert([
+        //     'name' => $username,
+        //     'password' => bcrypt($password)
+        // ]);
+
+        // return $ret_query;
+        return DB::table('users')->insert([
+            'name' => $username,
+            'password' => crypt($password,'salt'),
+            'email' => $email
+        ]);
+    }
     public function main_method(Request $req)
     {
         $req = $req->all();
@@ -53,6 +78,8 @@ class UserController extends Controller
         if (TASK === 'check_user') {
             $return_from_function = $this->check_user($req['username'], $req['password']);
             // return User::where('name', '=', 'new')->first();
+        } elseif (TASK === 'create_user') {
+            $return_from_function = $this->create_user($req['username'], $req['password'],$req['email']);
         }
         return $return_from_function;
     }

@@ -9,6 +9,7 @@
         />
         <p
             class="my-2 text-2xl text-center mt-4 hover:underline cursor-pointer"
+            @click="to_single_listing_page"
         >
             {{ props.data.name }}
         </p>
@@ -27,7 +28,6 @@
             @click="remove_from_cart(props.data.image_id)"
             v-else
         >
-            
             already in the cart
         </button>
     </div>
@@ -45,8 +45,8 @@ function add_to_cart(id_of_image) {
     if (!current_user.is_auth) {
         /* make user login first */
         router.push({
-            name:'login'
-        })
+            name: "login",
+        });
         return;
     }
     axios
@@ -67,17 +67,22 @@ function remove_from_cart(id_of_image) {
     axios
         .post("/api/cart/remove", {
             user_id: current_user.user_id,
-            image_id: id_of_image 
+            image_id: id_of_image,
         })
         .then((res) => {
             console.log(res);
             current_user.remove_from_cart(id_of_image);
         })
-        .catch(e=>{
+        .catch((e) => {
             console.log(e);
-        })
+        });
 }
-// console.log(current_user.cart);
-/* sync with backend for the cart */
+function to_single_listing_page() {
+    router.push({
+        name: "singleListing",
+        params: { image_id: JSON.stringify(props.data) },
+        // path: '/singleListing/'+props.data.image_id
+    });
+}
 </script>
 <style></style>

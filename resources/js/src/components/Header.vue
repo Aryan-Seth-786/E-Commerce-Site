@@ -10,7 +10,7 @@
             <li class="headingItem relative" @click="to_cart_page" >
                 cart
             </li>
-            <li v-if="user_data.is_auth" class="headingItem" @click="to_settings_page">settings</li>
+            <li v-if="user_data.is_auth" class="headingItem" @click="logout">logout</li>
             <li v-else class="flex">
             <li class="headingItem" @click="to_login_page">login</li>
             <li class="headingItem" @click="to_register_page">register</li>
@@ -42,9 +42,9 @@ function to_home_page(e) {
 
 }
 function to_cart_page(e) {
-    // router.push({
-    //     name: 'cart'
-    // })
+    router.push({
+        name: 'cart'
+    })
 }
 function to_login_page(e) {
     router.push({
@@ -52,10 +52,11 @@ function to_login_page(e) {
     })
 }
 function to_register_page(e) {
+    router.push({name:'register'})
 
 }
-function to_settings_page(e){
-    
+function logout(e){
+    user_data.reset_current_user();
 }
 
 </script>

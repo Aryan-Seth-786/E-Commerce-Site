@@ -1,4 +1,5 @@
 <template>
+
     <div id="login">
         <form action="#" @submit.prevent="submit_form">
             <input type="text" v-model="usr_name" />
@@ -12,11 +13,11 @@ import axios from "axios";
 import { ref } from "vue";
 import router from "../route";
 import { Current_user } from "../stores/my_store";
-
+const props = defineProps(['params']);
 let usr_name = ref("");
 let pass = ref("");
 const current_user = Current_user();
-
+console.log(props);
 function submit_form() {
     axios
         .post("/api/usr", {

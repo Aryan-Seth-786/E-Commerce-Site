@@ -56,8 +56,16 @@ export const Current_user = defineStore('current_user',()=>{
             console.log(e);
         })
     }
+    function reset_current_user(){
+        is_auth.value = false;
+        user_id.value = null;
+        filters_chosen.value.search_by_name = ''
+        filters_chosen.value.filter_by_heat = 'all';
+        filters_chosen.value.order_by = 'none'
+        cart.value.clear();
+    }
     // const is_auth2 = computed(()=>{
     //     return toString(is_auth.value);
     // })
-    return {is_auth,set_auth_to_true ,/*  is_auth2 , */ filters_chosen , cart , add_to_cart , remove_from_cart, user_id}
+    return {reset_current_user,is_auth,set_auth_to_true ,/*  is_auth2 , */ filters_chosen , cart , add_to_cart , remove_from_cart, user_id}
 })

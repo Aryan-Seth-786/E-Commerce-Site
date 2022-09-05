@@ -40,4 +40,17 @@ class CartController extends Controller
         // $image_id = $req['image_id'];
         return Cart::where('user','=',$user_id)->where('image','=',$req['image_id'])->delete();
     }
+    public function get_some(Request $req)
+    {
+        $req = $req->all();
+        // return $req['array'];
+        // define('GIVEN_ARRAY',$req['array']);
+        $given_array = $req['array'];
+        $toret = [];
+        
+        foreach($given_array as $val){
+            array_push($toret,Images::where('image_id','=',$val)->first()['name']);
+        }
+        return $toret;
+    }
 }

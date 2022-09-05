@@ -1,6 +1,6 @@
 <template>
     <div id="footer" class="mt-4">
-        ehllo
+        this is footer
     </div>
 </template>
 

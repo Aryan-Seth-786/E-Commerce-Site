@@ -27,5 +27,6 @@ Route::post('/getImgs', [ImageController::class, 'getImages']);
 Route::post('/cart/list', [CartController::class, 'get_cart']);
 Route::post('/cart/add', [CartController::class, 'add_to_cart']);
 Route::post('/cart/remove', [CartController::class, 'remove_from_cart']);
+Route::post('/cart/some',[CartController::class,'get_some']);
 /* for user */
 // Route::post('/user/')
