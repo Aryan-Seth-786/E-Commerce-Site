@@ -63,11 +63,16 @@ class UserController extends Controller
         // ]);
 
         // return $ret_query;
-        return DB::table('users')->insert([
+        $ret = DB::table('users')->insert([
             'name' => $username,
             'password' => crypt($password,'salt'),
             'email' => $email
         ]);
+        if (!empty($ret)){
+            return [
+                'reply' => 'done'
+            ];
+        }
     }
     public function main_method(Request $req)
     {
