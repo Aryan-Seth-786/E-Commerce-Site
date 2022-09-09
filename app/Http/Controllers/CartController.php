@@ -49,7 +49,7 @@ class CartController extends Controller
         $toret = [];
         
         foreach($given_array as $val){
-            array_push($toret,Images::where('image_id','=',$val)->first()['name']);
+            array_push($toret,Images::where('image_id','=',$val)->first());
         }
         return $toret;
     }

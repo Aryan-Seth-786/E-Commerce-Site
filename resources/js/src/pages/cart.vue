@@ -3,11 +3,12 @@
         <!-- {{current_user}} -->
         <p>your cart</p>
         <!-- <p>{{current_user.cart.entries}}</p> -->
-        <ul>
+        <!-- <ul>
             <li v-for="(item, index) of names_of_items" :key="index">
                 {{item}}
             </li>
-        </ul>
+        </ul> -->
+        <AllListings :data="items_in_cart" :inside_cart="true"></AllListings>
     </div>
     <!-- <button @click="get_cart_details">here</button> -->
 </template>
@@ -15,8 +16,9 @@
 import axios from 'axios';
 import { onMounted, reactive } from 'vue';
 import { Current_user } from '../stores/my_store';
+import AllListings from '../components/AllListings.vue';
 const current_user = Current_user();
-let names_of_items= reactive([]);
+let items_in_cart = reactive([]);
 function get_cart_details() {
     axios.post('/api/cart/some',{
         array : Array.from(current_user.cart)
@@ -24,7 +26,7 @@ function get_cart_details() {
     .then(res=>{
         // console.log(res);
         res.forEach(val=>{
-            names_of_items.push(val);
+            items_in_cart.push(val);
         })
     })
     .catch(e=>{

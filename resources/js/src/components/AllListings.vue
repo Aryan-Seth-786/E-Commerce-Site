@@ -4,13 +4,14 @@
             v-for="item of props.data"
             :key="props.data.name"
             :data="item"
+            :inside_cart="props.inside_cart"
         ></SingleListing>
     </div>
 </template>
 <script setup>
 import { toRefs } from "vue";
 import SingleListing from "./SingleListing.vue";
-const props = defineProps(["data"]);
+const props = defineProps(["data",'inside_cart']);
 
 // console.log('data got in all listings = ', props.data);
 </script>

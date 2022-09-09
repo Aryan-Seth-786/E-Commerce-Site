@@ -19,14 +19,14 @@
         <button
             class="mx-auto block mt-6 text-xl rounded-md border-0 outline outline-rose-300 bg-rose-200 cursor-pointer hover:bg-inherit transition-colors"
             @click="add_to_cart(props.data.image_id)"
-            v-if="!current_user.cart.has(props.data.image_id)"
+            v-if="(!(current_user.cart.has(props.data.image_id))) && (props.inside_cart === undefined)" 
         >
             add to cart
         </button>
         <button
             class="mx-auto block mt-6 text-xl rounded-md border-0 outline outline-rose-300 bg-rose-200 cursor-pointer hover:bg-inherit transition-colors"
             @click="remove_from_cart(props.data.image_id)"
-            v-else
+            v-else-if="(current_user.cart.has(props.data.image_id) && (props.inside_cart === undefined))"
         >
             already in the cart
         </button>
@@ -38,7 +38,7 @@ import router from "../route";
 import { Current_user } from "../stores/my_store";
 
 const current_user = Current_user();
-const props = defineProps(["data"]);
+const props = defineProps(["data", 'inside_cart']);
 
 function add_to_cart(id_of_image) {
     /* sync with backend */
