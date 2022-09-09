@@ -6,6 +6,7 @@
             <input type="text" v-model="pass" />
             <button type="submit">submit</button>
         </form>
+        <div id="res" v-text="response_text"></div>
     </div>
 </template>
 <script setup>
@@ -18,6 +19,7 @@ let usr_name = ref("");
 let pass = ref("");
 const current_user = Current_user();
 console.log(props);
+const response_text = ref('');
 function submit_form() {
     axios
         .post("/api/usr", {
@@ -38,7 +40,7 @@ function submit_form() {
                     name: 'home'
                 })
             }else if(res.reply === 'invalid user'){
-                /* do nothing */
+                response_text.value = 'username not registered try registering instead'
             }else {
                 console.error('conditions do not match');
             }
